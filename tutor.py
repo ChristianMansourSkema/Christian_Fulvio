@@ -280,7 +280,7 @@ def list_models(base_url, token):
     """Ask an OpenAI-compatible endpoint which models it exposes."""
     request = urllib.request.Request(
         base_url + "/models",
-        headers={"Authorization": "Bearer " + token},
+        headers={"Authorization": "Bearer " + token, "User-Agent": "pyexercises-tutor"},
         method="GET",
     )
     try:
@@ -307,7 +307,7 @@ def ask_model(messages, base_url, model, token):
         data=payload,
         headers={
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + token,
+            "Authorization": "Bearer " + token, "User-Agent": "pyexercises-tutor",
         },
         method="POST",
     )
