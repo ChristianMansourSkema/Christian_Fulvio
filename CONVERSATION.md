@@ -103,3 +103,79 @@ def parse_number(text):
 ```
 
 Which string method do we use to turn the comma into a dot before calling `float()`?
+
+---
+## 2026-10-18 19:05, in .
+
+**Me:** I print several lines like "a == b  True" where the expression on the left has a different length each time, so the True/False results do not line up. How can I pad the left part with spaces in an f-string so all the results start in the same column, like a table?
+
+**Tutor:**
+
+Aligning columns in an f‑string is done with a width specifier (e.g. `{:>20}`) that pads the left side with spaces so the right‑hand values line up.
+
+```python
+def format_comparison(expr: str, result: bool) -> str:
+    """
+    Return a line where *expr* is right‑aligned to a fixed width
+    and *result* follows after a single space.
+    """
+    # TODO: choose a width that fits the longest expression you expect
+    width = 20
+    return f"{expr:>{width}} {result}"
+    
+# Example (you can run these to see the output):
+# print(format_comparison("a == b", True))
+# print(format_comparison("longer_expression == c", False))
+```
+
+Which part of the f‑string controls the column where the `True`/`False` values start?
+
+---
+## 2026-10-18 19:08, in .
+
+**Me:** The width, the number after > inside the braces. What is the difference between > and <? And your second example is 22 characters but the width is 20: what happens to that line?
+
+**Tutor:**
+
+`>` right‑aligns the text inside the field, `<` left‑aligns it; the width is the minimum column size, and longer strings are printed in full, exceeding the width.
+
+```python
+def show_alignment(expr: str, result: bool) -> str:
+    """
+    Align *expr* left or right depending on the *align* flag.
+    """
+    # TODO: set width to the longest expression you expect, e.g. 20
+    width = 20
+    # Change '<' to '>' for right‑alignment
+    return f"{expr:<{width}} {result}"
+    
+# Example usage (run to see):
+# print(show_alignment("a == b", True))               # left‑aligned
+# print(show_alignment("very_long_expression == c", False))  # exceeds width
+```
+
+If an expression is longer than the specified width, what will the output look like?
+
+---
+## 2026-10-18 19:19, in .
+
+**Me:** In f"{text:<28}", what does the < mean and what does the 28 mean?
+
+**Tutor:**
+
+`<` tells the f‑string to left‑align the value, and `28` is the minimum field width (the number of characters reserved for that value).
+
+```python
+def demo_align(text: str) -> str:
+    """
+    Return *text* left‑aligned in a field that is at least 28 characters wide.
+    """
+    # TODO: try changing '<' to '>' to see right‑alignment
+    return f"{text:<28} <-- here"
+    
+# Example (run to see the effect):
+# print(demo_align("short"))
+# print(demo_align("a bit longer string"))
+```
+
+If you change `<` to `>`, which side of the field will the text be padded on?
